@@ -1,3 +1,4 @@
+ feature/anggota
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -131,4 +132,139 @@
     lucide.createIcons();
   </script>
 </body>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Komponen Kontak</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <!-- Container Modal Edit Kontak -->
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 border border-slate-100">
+    
+    <!-- Header Modal -->
+    <div class="flex justify-between items-center pb-2 border-b border-slate-100">
+      <h3 class="font-bold text-slate-900 text-sm">Edit Kontak Anggota</h3>
+      <button type="button" class="text-slate-400 hover:text-slate-600 transition">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Form Input Kontak -->
+    <form class="space-y-3.5 text-xs">
+      
+      <!-- Nama Lengkap -->
+      <div>
+        <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">
+          Nama Lengkap
+        </label>
+        <input 
+          type="text" 
+          value="Jessica Tan" 
+          placeholder="Masukkan nama lengkap"
+          class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-800 text-xs"
+        />
+      </div>
+
+      <!-- Peran & Status -->
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">
+            Peran / Jabatan
+          </label>
+          <select class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-800 text-xs">
+            <option value="Engineering" selected>Engineering</option>
+            <option value="Design">Design</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Management">Management</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">
+            Status
+          </label>
+          <select class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-800 text-xs">
+            <option value="Aktif" selected>Aktif</option>
+            <option value="Non-Aktif">Non-Aktif</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Alamat Email -->
+      <div>
+        <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">
+          Alamat Email
+        </label>
+        <input 
+          type="email" 
+          value="jessica.tan@company.com" 
+          placeholder="email@domain.com"
+          class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-800 text-xs"
+        />
+      </div>
+
+      <!-- Nomor Telepon -->
+      <div>
+        <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">
+          Nomor Telepon
+        </label>
+        <input 
+          type="text" 
+          value="+62 818-4455-6677" 
+          placeholder="+62 8xx-xxxx-xxxx"
+          class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-800 text-xs"
+        />
+      </div>
+
+      <!-- URL Foto Profil -->
+      <div>
+        <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">
+          URL Foto Profil
+        </label>
+        <input 
+          type="url" 
+          value="https://images.unsplash.com/photo-1517841905240-472988babdf9" 
+          placeholder="https://..."
+          class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-800 text-xs truncate"
+        />
+        <p class="text-[10px] text-slate-400 mt-1">Kosongkan untuk menggunakan avatar otomatis.</p>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="flex justify-end gap-2 pt-3">
+        <button 
+          type="button" 
+          class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition text-xs"
+        >
+          Batal
+        </button>
+        <button 
+          type="submit" 
+          class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition text-xs shadow-xs"
+        >
+          Simpan Kontak
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    // Inisialisasi ikon Lucide
+    lucide.createIcons();
+  </script>
+</body>
+ main
 </html>
