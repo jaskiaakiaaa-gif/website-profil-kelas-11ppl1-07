@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Kelas XI RPL 1 - RuangBelajar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen text-gray-800 flex flex-col">
+    <!-- Header / Navigation -->
+    <header class="bg-[#2c3e50] text-white shadow-md sticky top-0 z-30">
+      <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="showNotification('Profil Kelas', 'Anda berada di halaman utama Profil Kelas XI RPL 1.')">
+          <div class="bg-blue-500 p-2 rounded-lg text-white font-bold text-xl flex items-center justify-center w-10 h-10 shadow">
+            <i class="fa-solid fa-[#00d2d3] fa-users"></i>
+          </div>
+          <div>
+            <span class="text-xl font-bold tracking-tight block leading-tight">XI RPL 1</span>
+            <span class="text-xs text-blue-200">Rekayasa Perangkat Lunak</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button onclick="openJadwalModal()" class="flex items-center space-x-2 bg-[#34495e] hover:bg-[#3d566e] px-3 py-1.5 rounded-lg transition duration-200 text-sm font-medium">
+            <i class="fa-regular fa-calendar-check text-blue-400"></i>
+            <span class="hidden sm:inline">Jadwal Kelas</span>
+          </button>
+          
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+      <!-- Hero Banner Profil Kelas -->
+      <div class="bg-gradient-to-r from-[#1e3c72] via-[#2a5298] to-[#2c3e50] text-white rounded-2xl p-6 md:p-8 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+          <i class="fa-solid fa-code text-[14rem]"></i>
+        </div>
+        <div class="relative z-10 max-w-2xl">
+          <span class="inline-flex items-center space-x-2 bg-blue-500/30 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full mb-3 border border-blue-300/30 backdrop-blur-md">
+            <i class="fa-solid fa-sparkles text-amber-300"></i>
+            <span>Angkatan 2024 / 2025</span>
+          </span>
+          <h1 class="text-3xl md:text-4xl font-extrabold mb-2 tracking-tight">Profil Kelas XI RPL 1</h1>
+          <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-6">"Coding Today, Innovation Tomorrow." Wadah kolaborasi, kreasi, dan persaudaraan siswa Rekayasa Perangkat Lunak 1.</p>
+
+          <!-- Quick Stats Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-white/10">
+            <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-blue-200 font-medium">Total Siswa</div>
+              <div class="text-xl font-extrabold text-white">38 Orang</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-blue-200 font-medium">Laki-Laki</div>
+              <div class="text-xl font-extrabold text-white">23 Siswa</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-blue-200 font-medium">Perempuan</div>
+              <div class="text-xl font-extrabold text-white">16 Siswi</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-blue-200 font-medium">Wali Kelas</div>
+              <div class="text-xl font-extrabold text-amber-300 truncate">Bu Widya</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Struktur Pengurus Kelas -->
+      <section>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2">
+            <span class="p-2 bg-blue-100 text-blue-600 rounded-lg text-sm">
+              <i class="fa-solid fa-sitemap"></i>
+            </span>
+            <h2 class="font-bold text-gray-800 text-xl">Struktur Pengurus Kelas</h2>
+          </div>
+          <span class="text-xs text-gray-500">Masa Bakti 2025/2026</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Wali Kelas Card -->
+          <div onclick="openProfileModal()" class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center space-x-3 border-l-4 border-l-blue-600">
+            <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg flex-shrink-0">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <div class="overflow-hidden">
+              <span class="text-[10px] font-bold uppercase text-blue-600 tracking-wider block">Wali Kelas</span>
+              <h3 class="font-bold text-gray-800 text-sm truncate">Bu Widya, S.Pd.</h3>
+              <p class="text-xs text-gray-500">Guru PKN</p>
+            </div>
+          </div>
+
+          <!-- Ketua Kelas -->
+          <div
+            onclick="showNotification('Ketua Kelas', 'iman (NISN: 008123411)')"
+            class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center space-x-3 border-l-4 border-l-emerald-500"
+          >
+            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg flex-shrink-0">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <div class="overflow-hidden">
+              <span class="text-[10px] font-bold uppercase text-emerald-600 tracking-wider block">Ketua Kelas</span>
+              <h3 class="font-bold text-gray-800 text-sm truncate">Iman</h3>
+              <p class="text-xs text-gray-500">Fullstack Web Dev</p>
+            </div>
+          </div>
+
+          <!-- Wakil Ketua -->
+          <div
+            onclick="showNotification('Wakil Ketua', 'zulmi (NISN: 008123412)')"
+            class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center space-x-3 border-l-4 border-l-purple-500"
+          >
+            <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg flex-shrink-0">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div class="overflow-hidden">
+              <span class="text-[10px] font-bold uppercase text-purple-600 tracking-wider block">Wakil Ketua</span>
+              <h3 class="font-bold text-gray-800 text-sm truncate">Zulmi</h3>
+              <p class="text-xs text-gray-500">UI/UX Designer</p>
+            </div>
+          </div>
+
+          <!-- Sekretaris & Bendahara -->
+          <div
+            onclick="showNotification('Sekretaris & Bendahara', 'Sekretaris: synta | Bendahara: jaskia')"
+            class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center space-x-3 border-l-4 border-l-amber-500"
+          >
+            <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-lg flex-shrink-0">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <div class="overflow-hidden">
+              <span class="text-[10px] font-bold uppercase text-amber-600 tracking-wider block">Sekretaris & Kas</span>
+              <h3 class="font-bold text-gray-800 text-sm truncate">Synta & Jaskia</h3>
+              <p class="text-xs text-gray-500">Kas: Rp 2000.000</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Grid: Daftar Siswa & Jadwal / Prestasi -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left Column: Daftar Anggota Kelas (2 Cols on LG) -->
+        <div class="lg:col-span-2 space-y-5">
+          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-gray-100">
+              <div class="flex items-center space-x-2">
+                <span class="p-2 bg-indigo-100 text-indigo-600 rounded-lg text-sm">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </span>
+                <h3 class="font-bold text-gray-800 text-lg">Daftar Siswa XI RPL 1</h3>
+              </div>
+              <!-- Search & Filter -->
+              <div class="relative w-full sm:w-60">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                <input
+                  type="text"
+                  id="studentSearch"
+                  onkeyup="filterStudents()"
+                  placeholder="Cari nama siswa..."
+                  class="w-full pl-8 pr-3 py-1.5 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            <!-- Student Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="studentGrid">
+              <!-- Student 1 -->
+              <div class="student-item p-3 border border-gray-100 hover:border-blue-200 bg-gray-50 hover:bg-blue-50/50 rounded-xl transition flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">AF</div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800 text-sm student-name">Iman</h4>
+                    <p class="text-[11px] text-gray-500">NISN: 008123411 • Ketua Kelas</p>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Aktif</span>
+              </div>
+
+              <!-- Student 2 -->
+              <div class="student-item p-3 border border-gray-100 hover:border-blue-200 bg-gray-50 hover:bg-blue-50/50 rounded-xl transition flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">SN</div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800 text-sm student-name">Zulmi</h4>
+                    <p class="text-[11px] text-gray-500">NISN: 008123412 • Wakil Ketua</p>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Aktif</span>
+              </div>
+
+              <!-- Student 3 -->
+              <div class="student-item p-3 border border-gray-100 hover:border-blue-200 bg-gray-50 hover:bg-blue-50/50 rounded-xl transition flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">RP</div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800 text-sm student-name">Synta</h4>
+                    <p class="text-[11px] text-gray-500">NISN: 008123413 • Sekretaris</p>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Aktif</span>
+              </div>
+
+              <!-- Student 4 -->
+              <div class="student-item p-3 border border-gray-100 hover:border-blue-200 bg-gray-50 hover:bg-blue-50/50 rounded-xl transition flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">MA</div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800 text-sm student-name">Jaskia</h4>
+                    <p class="text-[11px] text-gray-500">NISN: 008123414 • Bendahara</p>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Aktif</span>
+              </div>
+
+              <!-- Student 5 -->
+              <div class="student-item p-3 border border-gray-100 hover:border-blue-200 bg-gray-50 hover:bg-blue-50/50 rounded-xl transition flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">BS</div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800 text-sm student-name">Azka</h4>
+                    <p class="text-[11px] text-gray-500">NISN: 008123415 • Anggota</p>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Aktif</span>
+              </div>
+
+              <!-- Student 6 -->
+              <div class="student-item p-3 border border-gray-100 hover:border-blue-200 bg-gray-50 hover:bg-blue-50/50 rounded-xl transition flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">DR</div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800 text-sm student-name">Dina</h4>
+                    <p class="text-[11px] text-gray-500">NISN: 008123416 • Anggota</p>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Aktif</span>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t text-center">
+              <button onclick="showNotification('Daftar Lengkap', 'Menampilkan 36 dari 36 siswa XI RPL 1.')" class="text-xs font-semibold text-blue-600 hover:text-blue-800 transition">
+                Lihat Seluruh 36 Siswa <i class="fa-solid fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Sidebar (Jadwal Hari Ini & Prestasi) -->
+        <div class="space-y-5">
+          <!-- Jadwal Hari Ini -->
+          <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm">
+            <div class="flex items-center space-x-2.5 mb-4 pb-3 border-b border-gray-100">
+              <span class="p-2 bg-orange-100 text-orange-500 rounded-lg text-sm">
+                <i class="fa-regular fa-clock"></i>
+              </span>
+              <h3 class="font-bold text-gray-800 text-base">Jadwal Hari Ini (Kamis)</h3>
+            </div>
+
+            <div class="space-y-3">
+              <div class="p-2.5 bg-blue-50/80 rounded-lg border-l-4 border-blue-500">
+                <div class="text-xs font-bold text-blue-900">07:00 - 09:30 WIB</div>
+                <div class="text-sm font-semibold text-gray-800 mt-0.5">Pemrograman Web & Perangkat Bergerak</div>
+                <div class="text-xs text-gray-500">Pak Asep • Lab Komputer 2</div>
+              </div>
+
+              <div class="p-2.5 bg-gray-50 rounded-lg border-l-4 border-gray-300">
+                <div class="text-xs font-bold text-gray-600">09:30 - 10:00 WIB</div>
+                <div class="text-sm font-semibold text-gray-700 mt-0.5">Istirahat</div>
+              </div>
+
+              <div class="p-2.5 bg-emerald-50/80 rounded-lg border-l-4 border-emerald-500">
+                <div class="text-xs font-bold text-emerald-900">10:00 - 12:15 WIB</div>
+                <div class="text-sm font-semibold text-gray-800 mt-0.5">Basis Data & SQL</div>
+                <div class="text-xs text-gray-500">Bu Rahmi • Ruang XI RPL 1</div>
+              </div>
+            </div>
+
+            <button onclick="openJadwalModal()" class="w-full mt-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-list-check"></i>
+              <span>Jadwal Pekanan Lengkap</span>
+            </button>
+          </div>
+
+          <!-- Prestasi & Galeri -->
+          <div class="bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl p-5 text-white shadow-md">
+            <div class="flex items-center space-x-2 mb-2">
+              <i class="fa-solid fa-trophy text-amber-200 text-lg"></i>
+              <h4 class="font-bold text-base">Prestasi Kelas</h4>
+            </div>
+            <ul class="text-xs space-y-2 text-amber-100">
+              <li class="flex items-start space-x-2">
+                <span class="text-amber-200">•</span>
+                <span><strong>Juara 1</strong> Hackathon SMK Tingkat Kota 2024</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-amber-200">•</span>
+                <span><strong>Juara 2</strong> Kebersihan & Kerapihan Kelas</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL JADWAL KELAS -->
+    <div id="jadwalModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="jadwalModalCard">
+        <div class="bg-[#2c3e50] text-white px-6 py-4 flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-calendar-days text-blue-400"></i>
+            <h2 class="text-lg font-bold">Jadwal Pelajaran XI RPL 1</h2>
+          </div>
+          <button onclick="closeJadwalModal()" class="text-gray-300 hover:text-white p-1 rounded-lg transition">
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto space-y-4 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="p-3 bg-gray-50 rounded-lg border">
+              <div class="font-bold text-blue-600 text-sm mb-1">Senin</div>
+              <p>07:00 - 08:30: Upacara Bendera</p>
+              <p>08:30 - 11:30: Pemrograman Berorientasi Objek</p>
+              <p>12:30 - 14:00: Bahasa Indonesia</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg border">
+              <div class="font-bold text-blue-600 text-sm mb-1">Selasa</div>
+              <p>07:00 - 09:30: Matematika Industri</p>
+              <p>09:45 - 12:00: Bahasa Inggris Teknik</p>
+              <p>12:30 - 14:00: Pendidikan Agama</p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg border">
+              <div class="font-bold text-blue-600 text-sm mb-1">Rabu</div>
+              <p>07:00 - 11:30: Pemodelan Perangkat Lunak</p>
+              <p>12:30 - 14:00: PPKn</p>
+            </div>
+            <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <div class="font-bold text-blue-800 text-sm mb-1">Kamis (Hari Ini)</div>
+              <p>07:00 - 09:30: Pemrograman Web (Lab 2)</p>
+              <p>10:00 - 12:15: Basis Data & SQL</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 px-6 py-3 border-t flex justify-end">
+          <button onclick="closeJadwalModal()" class="bg-[#3498db] hover:bg-[#2980b9] text-white px-5 py-2 rounded-lg text-sm font-medium transition">Tutup Jadwal</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL WALI KELAS -->
+    <div id="profileModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="profileModalCard">
+        <div class="w-20 h-20 bg-blue-600 text-white rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-3 shadow-md">
+          <i class="fa-solid fa-user-tie"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800">Pak Budi, S.Kom.</h3>
+        <p class="text-sm text-gray-500 mb-4">Wali Kelas XI RPL 1 • NIP: 19850312201001</p>
+
+        <div class="bg-gray-50 rounded-lg p-3 text-left space-y-2 text-xs text-gray-600 mb-5">
+          <div class="flex justify-between"><span>Mata Pelajaran:</span> <strong class="text-gray-800">Pemrograman Web</strong></div>
+          <div class="flex justify-between"><span>Ruang Utama:</span> <strong class="text-gray-800">Lab Komputer 2</strong></div>
+          <div class="flex justify-between"><span>Status Kelas:</span> <strong class="text-emerald-600">Sangat Baik</strong></div>
+        </div>
+
+        <button onclick="closeProfileModal()" class="w-full py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-semibold rounded-lg transition">Tutup</button>
+      </div>
+    </div>
+
+    <script>
+      /* Modal Animation Helpers */
+      function animateOpen(modalId, cardId) {
+        const modal = document.getElementById(modalId);
+        const card = document.getElementById(cardId);
+        modal.classList.remove("hidden");
+        setTimeout(() => {
+          card.classList.remove("scale-95", "opacity-0");
+          card.classList.add("scale-100", "opacity-100");
+        }, 10);
+      }
+
+      function animateClose(modalId, cardId) {
+        const modal = document.getElementById(modalId);
+        const card = document.getElementById(cardId);
+        card.classList.remove("scale-100", "opacity-100");
+        card.classList.add("scale-95", "opacity-0");
+        setTimeout(() => {
+          modal.classList.add("hidden");
+        }, 200);
+      }
+
+      function openJadwalModal() {
+        animateOpen("jadwalModal", "jadwalModalCard");
+      }
+      function closeJadwalModal() {
+        animateClose("jadwalModal", "jadwalModalCard");
+      }
+      function openProfileModal() {
+        animateOpen("profileModal", "profileModalCard");
+      }
+      function closeProfileModal() {
+        animateClose("profileModal", "profileModalCard");
+      }
+
+      /* Student Search Filter */
+      function filterStudents() {
+        const input = document.getElementById("studentSearch").value.toLowerCase();
+        const items = document.getElementsByClassName("student-item");
+
+        Array.from(items).forEach((item) => {
+          const name = item.querySelector(".student-name").innerText.toLowerCase();
+          if (name.includes(input)) {
+            item.style.display = "flex";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      }
+
+      /* Toast Notification Helper */
+      function showNotification(title, message) {
+        const toast = document.createElement("div");
+        toast.className = "fixed bottom-5 right-5 bg-gray-900 text-white p-4 rounded-xl shadow-2xl z-50 flex items-start space-x-3 max-w-sm transition-all duration-300 transform translate-y-10 opacity-0";
+        toast.innerHTML = `
+        <div class="text-blue-400 text-xl"><i class="fa-solid fa-circle-info"></i></div>
+        <div>
+          <h4 class="font-bold text-sm">${title}</h4>
+          <p class="text-xs text-gray-300 mt-0.5">${message}</p>
+        </div>
+      `;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.classList.remove("translate-y-10", "opacity-0");
+        }, 10);
+
+        setTimeout(() => {
+          toast.classList.add("opacity-0", "translate-y-10");
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
+```
