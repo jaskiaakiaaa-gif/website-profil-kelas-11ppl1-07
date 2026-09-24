@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Direktori Anggota Kontak</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 p-6 md:p-10">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header Judul & Tombol Tambah -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-xs">
+          <i data-lucide="users" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-slate-900">Direktori Anggota</h1>
+          <p class="text-xs text-slate-500">Kelola kontak dan informasi tim dengan mudah</p>
+        </div>
+      </div>
+      <button onclick="openModal('add')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 transition shadow-xs">
+        <i data-lucide="user-plus" class="w-4 h-4"></i>
+        Tambah Anggota
+      </button>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="bg-white p-3 rounded-2xl border border-slate-200/80 shadow-xs flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="relative flex-1 min-w-[200px]">
+        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+        <input id="searchInput" oninput="renderCards()" type="text" placeholder="Cari nama, email, atau jabatan..." class="w-full pl-9 pr-3 py-2 bg-slate-50 rounded-xl border border-slate-200 focus:outline-none focus:border-indigo-500 text-xs">
+      </div>
+
+      <div class="flex items-center gap-4 flex-wrap">
+        <div class="flex items-center gap-2">
+          <span class="text-slate-500">Peran:</span>
+          <select id="roleFilter" onchange="renderCards()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-700 focus:outline-none">
+            <option value="Semua">Semua Peran</option>
+            <option value="Design">Design</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Management">Management</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-slate-500">Status:</span>
+          <select id="statusFilter" onchange="renderCards()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-700 focus:outline-none">
+            <option value="Semua">Semua Status</option>
+            <option value="Aktif">Aktif</option>
+            <option value="Non-Aktif">Non-Aktif</option>
+          </select>
+        </div>
+
+        <div class="flex border border-slate-200 rounded-xl p-0.5 bg-slate-50">
+          <button class="p-1.5 bg-white rounded-lg shadow-xs text-indigo-600"><i data-lucide="layout-grid" class="w-4 h-4"></i></button>
+          <button class="p-1.5 text-slate-400 hover:text-slate-600"><i data-lucide="list" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="membersGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Item kartu dimasukkan via JS -->
+    </div>
+
+  </div>
+
+  <!-- Modal Popup Edit/Tambah -->
+  <div id="modalOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 hidden z-50">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4 border border-slate-100">
+      <div class="flex justify-between items-center pb-2 border-b border-slate-100">
+        <h3 id="modalTitle" class="font-bold text-slate-900 text-sm">Edit Kontak Anggota</h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="memberForm" onsubmit="saveMember(event)" class="space-y-3.5 text-xs">
+        <input type="hidden" id="memberId">
+        
+        <div>
+          <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">Nama Lengkap</label>
+          <input type="text" id="inputName" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">Peran / Jabatan</label>
+            <select id="inputRole" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500">
+              <option value="Design">Design</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Management">Management</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">Status</label>
+            <select id="inputStatus" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500">
+              <option value="Aktif">Aktif</option>
+              <option value="Non-Aktif">Non-Aktif</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">Alamat Email</label>
+          <input type="email" id="inputEmail" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">Nomor Telepon</label>
+          <input type="text" id="inputPhone" required class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500">
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold tracking-wider text-slate-500 uppercase mb-1">URL Foto Profil</label>
+          <input type="url" id="inputAvatar" class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-500">
+          <p class="text-[10px] text-slate-400 mt-1">Kosongkan untuk menggunakan avatar otomatis.</p>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition">Batal</button>
+          <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition">Simpan Kontak</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let members = [
+      {
+        id: 1,
+        name: "Siti Rahmawati",
+        role: "Design",
+        status: "Aktif",
+        email: "siti.rahma@company.com",
+        phone: "+62 811-9876-5432",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+      },
+      {
+        id: 2,
+        name: "Ahmad Fauzi",
+        role: "Engineering",
+        status: "Aktif",
+        email: "ahmad.fauzi@company.com",
+        phone: "+62 812-3344-5566",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+      },
+      {
+        id: 3,
+        name: "Dewi Lestari",
+        role: "Marketing",
+        status: "Non-Aktif",
+        email: "dewi.lestari@company.com",
+        phone: "+62 813-7788-9900",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+      },
+      {
+        id: 4,
+        name: "fadli",
+        role: "Management",
+        status: "Aktif",
+        email: "reza.pratama@company.com",
+        phone: "+62 815-1122-3344",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150"
+      },
+      {
+        id: 5,
+        name: "Jessica Tan",
+        role: "Engineering",
+        status: "Aktif",
+        email: "jessica.tan@company.com",
+        phone: "+62 818-4455-6677",
+        avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150"
+      }
+    ];
+
+    function renderCards() {
+      const container = document.getElementById('membersGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const role = document.getElementById('roleFilter').value;
+      const status = document.getElementById('statusFilter').value;
+
+      const filtered = members.filter(m => {
+        const matchesSearch = m.name.toLowerCase().includes(search) || 
+                              m.email.toLowerCase().includes(search) || 
+                              m.role.toLowerCase().includes(search);
+        const matchesRole = role === 'Semua' || m.role === role;
+        const matchesStatus = status === 'Semua' || m.status === status;
+        return matchesSearch && matchesRole && matchesStatus;
+      });
+
+      container.innerHTML = filtered.map(m => `
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs relative flex flex-col justify-between space-y-4">
+          <div class="absolute top-4 right-4 flex items-center gap-1.5 text-slate-300">
+            <button onclick="openModal('edit', ${m.id})" class="hover:text-slate-600 transition p-1"><i data-lucide="pencil" class="w-3.5 h-3.5"></i></button>
+            <button onclick="deleteMember(${m.id})" class="hover:text-red-500 transition p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+          </div>
+
+          <div class="space-y-3">
+            <div class="relative w-12 h-12">
+              <img src="${m.avatar || 'https://via.placeholder.com/150'}" class="w-12 h-12 rounded-xl object-cover">
+              <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 border-2 border-white rounded-full ${m.status === 'Aktif' ? 'bg-emerald-500' : 'bg-slate-300'}"></span>
+            </div>
+
+            <div>
+              <h3 class="font-bold text-slate-900 text-sm">${m.name}</h3>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 text-slate-600">${m.role}</span>
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium ${m.status === 'Aktif' ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-500'}">${m.status}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-1 pt-2 border-t border-slate-50 text-slate-500 text-xs">
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-400"></i>
+              <span class="truncate">${m.email}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-400"></i>
+              <span>${m.phone}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function openModal(mode, id = null) {
+      const modal = document.getElementById('modalOverlay');
+      const title = document.getElementById('modalTitle');
+      
+      if (mode === 'add') {
+        title.innerText = 'Tambah Anggota Baru';
+        document.getElementById('memberForm').reset();
+        document.getElementById('memberId').value = '';
+      } else {
+        title.innerText = 'Edit Kontak Anggota';
+        const m = members.find(item => item.id === id);
+        document.getElementById('memberId').value = m.id;
+        document.getElementById('inputName').value = m.name;
+        document.getElementById('inputRole').value = m.role;
+        document.getElementById('inputStatus').value = m.status;
+        document.getElementById('inputEmail').value = m.email;
+        document.getElementById('inputPhone').value = m.phone;
+        document.getElementById('inputAvatar').value = m.avatar || '';
+      }
+      
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.add('hidden');
+    }
+
+    function saveMember(e) {
+      e.preventDefault();
+      const id = document.getElementById('memberId').value;
+      const newMember = {
+        id: id ? parseInt(id) : Date.now(),
+        name: document.getElementById('inputName').value,
+        role: document.getElementById('inputRole').value,
+        status: document.getElementById('inputStatus').value,
+        email: document.getElementById('inputEmail').value,
+        phone: document.getElementById('inputPhone').value,
+        avatar: document.getElementById('inputAvatar').value || 'https://via.placeholder.com/150'
+      };
+
+      if (id) {
+        members = members.map(m => m.id === parseInt(id) ? newMember : m);
+      } else {
+        members.push(newMember);
+      }
+
+      closeModal();
+      renderCards();
+    }
+
+    function deleteMember(id) {
+      if (confirm('Yakin ingin menghapus kontak ini?')) {
+        members = members.filter(m => m.id !== id);
+        renderCards();
+      }
+    }
+
+    renderCards();
+  </script>
+</body>
+</html>
